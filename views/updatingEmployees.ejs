@@ -1,0 +1,40 @@
+<body>
+    <h1>Edit Employee</h1>
+    <!--This code tells u the list of requiremtents-->
+    <ul>
+        <li>EID is not editable.</li>
+        <li>Name should be a minimum of 5 characters.</li>
+        <li>Role should be Manager or Employee.</li>
+        <li>Salary should be > 0.</li>
+    </ul>
+
+</body>
+
+<!--The form is populated with the employee info that is being updated-->
+<!-- The Link to updating th employees page -->
+<!--Using an Array to sort between all the employees-->
+<form href="http://localhost:3004/employees/edit/<%= updatingEmployees[0].eid %>" method="POST">
+    <b><label>EID:</label></b>
+    <input type="text" readonly="true" name="eid" value="<%= updatingEmployees[0].eid%>" required></input>
+    <b><label>Name:</label></b>
+    <input type="text" name="ename" value="<%= updatingEmployees[0].ename %>" minlength="5" required></input>
+    <b><label for="role">Role:</label></b>
+    <select id="role" name="role" required>
+        <option value="<%= updatingEmployees[0].role %>">
+            <%= updatingEmployees[0].role %>
+        </option>
+        <option value="Manager">Manager</option>
+        <option value="Employee">Employee</option>
+    </select>
+    <b><label>Salary:</label></b>
+    <input type="number" name="salary" value="<%= updatingEmployees[0].salary %>" min="1" step=".01" required></input>
+    <input type="submit" value="Update">
+</form>
+
+<button onclick="window.location.href='http://localhost:3004/';">
+    Home
+</button>
+<p></p>
+<button onclick="window.location.href='http://localhost:3004/employees';">
+    Employees
+</button>

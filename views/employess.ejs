@@ -1,3 +1,4 @@
+<!--Styling-->
 <style>
     table,
     th,
@@ -8,8 +9,8 @@
 </style>
 
 <table>
+    <!--Displaying all the options-->
     <h1>Employees</h1>
-    <a href="http://localhost:3004/employees/add"><button type="submit" value="Add Employee">Add Employee</button></a>
     <p></p>
     <th>Employee ID</th>
     <th>Name</th>
@@ -18,7 +19,7 @@
     <th>Update</th>
 
     </tr>
-    <!--Loops over all employees and displays them-->
+    <!--This is the code that is being used to display the employees -->
     <% employeeList.forEach((employeeList)=>
         { %>
         <tr>
@@ -35,7 +36,7 @@
                 <%= employeeList.salary %>
             </td>
             <td>
-                <!--Does a get request including employee id-->
+                <!--This is the code that is being used to update the employees-->
                 <a href="/employees/edit/<%= employeeList.eid %>">
                     <p type="submit">Update</p>
                 </a>
@@ -45,7 +46,7 @@
 </table>
 
 <br>
-
+<!--Home Button-->
 <button onclick="window.location.href='http://localhost:3004/';">
     Home
 </button>

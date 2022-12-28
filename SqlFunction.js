@@ -29,5 +29,43 @@ var employees = function () {
     })
 }
 
+//UPDATING EMPLOYEES
+//Chooses employee to populate form to edit details
+var updatingEmployees = function (eid) {
+    return new Promise((resolve, reject) => {
+        var mySqlQuery = {
+            sql: 'select * from employee where eid=?',
+            values: [eid]
+        }
+
+        pool.query(mySqlQuery)
+            .then((data) => {
+                resolve(data)
+            })
+            .catch((error) => {
+                reject(error)
+            })
+    })
+}
+
+//updates employee data which user has entered
+var updateEmployeeData = function (eid, ename, role, salary) {
+    return new Promise((resolve, reject) => {
+        var mySqlQuery = {
+            sql: 'update employee set ename = ?, role = ?, salary = ? where eid = ?',
+            values: [ename, role, salary, eid]
+        }
+
+        pool.query(mySqlQuery)
+            .then((data) => {
+                resolve(data)
+            })
+            .catch((error) => {
+                reject(error)
+            })
+    })
+}
+
+
 //Exporting all functions
-module.exports = { employees };
+module.exports = { employees, updatingEmployees, updateEmployeeData };

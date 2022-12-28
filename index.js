@@ -26,6 +26,33 @@ app.get('/employees', (req, res) => {
         })
 })
 
+//Editing Employees
+//getting all the data of employees
+app.get('/employees/edit/:eid', (req, res) => {
+    //Populates form with employee details
+    SqlFunction.updatingEmployees(req.params.eid)
+        .then((result) => {
+            //results=JSON.parse(JSON.stringify(result)) 
+            //console.log(result)
+            res.render('updatingEmployees', { updatingEmployees: result })
+        })
+        .catch((error) => {
+            console.log(error)
+
+        })
+})
+
+//Updates employee mySQL with edited data
+app.post('/employees/edit/:eid', (req, res) => {
+    SqlFunction.updateEmployeeData(req.body.eid, req.body.ename, req.body.role, req.body.salary)
+        .then((result) => {
+            res.redirect("/employees")
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+})
+
 app.listen(3004, () => {
     console.log("Server is listening")
 })
