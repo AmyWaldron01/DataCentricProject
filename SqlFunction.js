@@ -28,6 +28,7 @@ var employees = function () {
             })
     })
 }
+/////////////////////////////////////////////////////////////////////////
 
 //UPDATING EMPLOYEES
 //Chooses employee to populate form to edit details
@@ -65,7 +66,40 @@ var updateEmployeeData = function (eid, ename, role, salary) {
             })
     })
 }
+/////////////////////////////////////////////////////////////////////////
+
+//Departments
+var departments = function () {
+    return new Promise((resolve, reject) => {
+        pool.query('select * from dept')
+            .then((data) => {
+                resolve(data)
+            })
+            .catch((error) => {
+                reject(error)
+            })
+    })
+}
+
+//Deleating departments
+var deleteDepartment = function (did) {
+    return new Promise((resolve, reject) => {
+        var mySqlQuery = {
+            sql: 'delete from dept where did = ?',
+            values: [did]
+        }
+
+        pool.query(mySqlQuery)
+            .then((data) => {
+                resolve(data)
+            })
+            .catch((error) => {
+                reject(error)
+            })
+    })
+}
+
 
 
 //Exporting all functions
-module.exports = { employees, updatingEmployees, updateEmployeeData };
+module.exports = { employees, updatingEmployees, updateEmployeeData,departments,deleteDepartment };

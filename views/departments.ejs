@@ -1,0 +1,54 @@
+<style>
+    table,
+    th,
+    td {
+        border: 2px solid black;
+        border-collapse: separate;
+    }
+</style>
+
+<table>
+    <!--Displaying all the options-->
+    <h1>Departments</h1>
+    <p></p>
+    <th>DID</th>
+    <th>Name</th>
+    <th>Budget</th>
+    <th>Location</th>
+
+    <th>Delete</th>
+
+    </tr>
+    <!--This is the code that is being used to display the departments - looping over -->
+    <% departmentList.forEach((departmentList)=>
+        { %>
+        <tr>
+            <td>
+                <%= departmentList.did %>
+            </td>
+            <td>
+                <%= departmentList.dname %>
+            </td>
+            <td>
+                <%= departmentList.budget %>
+            </td>
+            <td>
+                <%= departmentList.lid %>
+            </td>
+            <td>
+            
+                <!--This is the code that is being used to delete the departments-->
+                <!--checkinf the dep ID-->
+                <a href="/department/delete/<%= departmentList.did %>">
+                    <p type="submit">Delete</p>
+                </a>
+            </td>
+        </tr>
+        <% }) %>
+</table>
+
+<p></p>
+
+<button onclick="window.location.href='http://localhost:3004/';">
+    Home
+</button>
