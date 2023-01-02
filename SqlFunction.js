@@ -82,6 +82,7 @@ var departments = function () {
 }
 
 //Deleating departments
+//Must add dep first in the command promt for sql
 var deleteDepartment = function (did) {
     return new Promise((resolve, reject) => {
         var mySqlQuery = {
@@ -99,7 +100,28 @@ var deleteDepartment = function (did) {
     })
 }
 
+/////////////////////////////////////////////////////////////////////////
+//Mongo employees
+
+//Checks if employee exists
+var checkingEID = function (eid){
+    return new Promise((resolve, reject) => {
+        var mySqlQuery = {
+            sql: 'select * from employee where eid like ?',
+            values: [eid]
+        }
+        pool.query(mySqlQuery)
+            .then((data) => {
+                resolve(data)
+            })
+            .catch((error) => {
+                reject(error)
+            })
+    })
+}
+
+
 
 
 //Exporting all functions
-module.exports = { employees, updatingEmployees, updateEmployeeData,departments,deleteDepartment };
+module.exports = { employees, updatingEmployees, updateEmployeeData,departments,deleteDepartment,checkingEID };
